@@ -6,7 +6,8 @@ ENV DEBIAN_FRONTEND noninteractive
 # Preparation
 RUN \
   rm -fr /app/* && \
-  apt-get install -yqq wget unzip && \
+  apt-get update && apt-get install -yqq wget unzip && \
+  rm -rf /var/lib/apt/lists/* && \
   wget https://github.com/RandomStorm/DVWA/archive/v1.0.8.zip  && \
   unzip /v1.0.8.zip && \
   rm -rf app/* && \
