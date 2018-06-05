@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # Preparation
 RUN \
   rm -fr /app/* && \
-  apt-get update && apt-get install -yqq wget unzip && \
+  apt-get update && apt-get install -yqq wget unzip php5-gd && \
   rm -rf /var/lib/apt/lists/* && \
   wget https://github.com/ethicalhack3r/DVWA/archive/v1.9.zip && \
   unzip /v1.9.zip && \
