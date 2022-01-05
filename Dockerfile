@@ -19,6 +19,12 @@ RUN \
   sed -ri -e "s/^allow_url_include.*/allow_url_include = On/" /etc/php5/apache2/php.ini && \
   chmod a+w /app/hackable/uploads && \
   chmod a+w /app/external/phpids/0.6/lib/IDS/tmp/phpids_log.txt
+  
+  sudo service apache2 stop
+  mv /path/to/trend_app_protect-*.so "$(php -r 'echo ini_get ("extension_dir");')"/trend_app_protect.so
+  echo '; Enable the extension \n extension = trend_app_protect.so \n \n ; Add key and secret from the Application Protection dashboard
+trend_app_protect.key = f093706e-ebb8-40c4-831c-9a105e5b56b5 \n trend_app_protect.secret = c1442a86-da00-448f-b2d6-422bada4bc7f' >> /etc/php5/apache2/php.ini
+  sudo service apache2 restart
 
 EXPOSE 80 3306
 CMD ["/run.sh"]
